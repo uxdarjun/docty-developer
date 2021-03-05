@@ -51,7 +51,7 @@ interface ExampleFlatNode {
 })
 export class AppComponent {
   @ViewChild("tree") tree;
-  endPoint = "https://apicotest.docty.ai/api/clinic/customer/my-customers";
+  endPoint = "https://apico.docty.ai/api/clinic/customer/my-customers";
   token: string = "e0e4a5d5ebacaa0264102632bf7725948fc1f394";
   params: any = {};
   loader = false;
