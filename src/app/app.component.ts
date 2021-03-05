@@ -52,7 +52,7 @@ interface ExampleFlatNode {
 export class AppComponent {
   @ViewChild("tree") tree;
   endPoint = "https://apicotest.docty.ai/api/clinic/customer/my-customers";
-  token: string = "89384d835fdf0bcec63cecb23917584e7038be6d";
+  token: string = "e0e4a5d5ebacaa0264102632bf7725948fc1f394";
   params: any = {};
   loader = false;
   private _transformer = (node: any, level: number) => {

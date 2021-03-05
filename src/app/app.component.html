@@ -196,7 +196,7 @@
 									</tr>
 
 									<tr>
-										<td><code>Search</code></td>
+										<td><code>search</code></td>
 										<td>Optional</td>
 										<td>
 											Any search keyword like first name, last name, phone no. or email of
@@ -207,6 +207,58 @@
 										</td>
 										<td>
 											<input type="text" class="form-control" [(ngModel)]="params.search" />
+                  </td>
+									</tr>
+									<tr>
+										<td><code>pageSize</code></td>
+										<td>Optional</td>
+										<td>
+											No. of rows per page. default is 25
+											<br />
+											<b>Acceptable values : </b>
+											<code>number</code>, <code>Name</code>,<code>Email etc..</code>
+										</td>
+										<td>
+											<input type="text" class="form-control" [(ngModel)]="params.pageSize" />
+                  </td>
+									</tr>
+									<tr>
+										<td><code>bmi</code></td>
+										<td>Optional</td>
+										<td>
+											fit,underWeight,overWeight,obese
+											<br />
+											<b>Acceptable values : </b>
+											<code>number</code>, <code>Name</code>,<code>Email etc..</code>
+										</td>
+										<td>
+											<input type="text" class="form-control" [(ngModel)]="params.bmi" />
+                  </td>
+									</tr>
+									<tr>
+										<td><code>gender</code></td>
+										<td>Optional</td>
+										<td>
+											To generate the user list by gender you can apply gender parameter
+											<br />
+											<b>Acceptable values: </b>
+											<code>MALE</code>, <code>FEMALE</code>
+										</td>
+										<td>
+											<input type="text" class="form-control" [(ngModel)]="params.gender" />
+                  </td>
+									</tr>
+									<tr>
+										<td><code>triage</code></td>
+										<td>Optional</td>
+										<td>
+											This parameter enables to generate user list by the last triage
+											<br />
+											<b>Acceptable values : </b>
+											<code>emegency</code>, <code>consultation</code>,<code>self_care</code>
+										</td>
+										<td>
+											<input type="text" class="form-control" [(ngModel)]="params.triage" />
                   </td>
 									</tr>
 								</tbody>
