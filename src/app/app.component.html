@@ -220,26 +220,27 @@
           </mat-card>
 
 							<h3>Response Query and Data Results</h3>
-							<mat-card *ngIf="!result" style="text-align:center;padding:30px;">
-								<a class="text-info text-center" (click)="evaluate()" style="display:flex;cursor:pointer;">
+							<mat-card *ngIf="!result && !error" style="text-align:center;padding:30px;">
+								<a class="text-info text-center" (click)="evaluate()"
+									style="display:flex;cursor:pointer;">
 									Get Response &emsp;
 									<mat-spinner diameter="16" color="warn" *ngIf="loader"></mat-spinner>
 								</a>
 							</mat-card>
 							<mat-card *ngIf="result">
 								<mat-tab-group>
-									<mat-tab label="Query">
+									<mat-tab label="Request Payload">
 										<pre>{{params | json}}</pre>
 									</mat-tab>
-									<mat-tab label="JSON View">
+									<mat-tab label="Response JSON">
 										<div class="highlight">
 											<pre *ngIf="result">{{result | json}}</pre>
 										</div>
 									</mat-tab>
-									<mat-tab label="Object View">
+									<mat-tab label="Responce Object">
 										<ngx-json-viewer [json]="result"></ngx-json-viewer>
 									</mat-tab>
-									<mat-tab label="Grid View">
+									<mat-tab label="Respoce Grid View">
 										<table class="table table-bordered">
 											<thead>
 												<tr>
@@ -269,6 +270,16 @@
 												</tr>
 											</tbody>
 										</table>
+									</mat-tab>
+									<mat-tab label="Error Object" *ngIf="error">
+										<pre>{{error | json}}</pre>
+									</mat-tab>
+								</mat-tab-group>
+							</mat-card>
+							<mat-card *ngIf="error">
+								<mat-tab-group>
+									<mat-tab label="Error Object">
+										<pre>{{error | json}}</pre>
 									</mat-tab>
 								</mat-tab-group>
 							</mat-card>

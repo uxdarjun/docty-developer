@@ -89,15 +89,18 @@ export class AppComponent {
     this.tree.treeControl.expandAll();
   }
   result = null;
+  error = null;
   evaluate() {
     this.loader = true;
+    this.result = null;
+    this.error = null;
     this.http
       .post(this.endPoint, this.params, { headers: { auth_token: this.token } })
       .toPromise()
       .then(res => {
         this.result = res;
       })
-      .catch(e => console.log(e))
+      .catch(e => this.error = e)
       .finally(() => (this.loader = false));
   }
 }
