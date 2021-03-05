@@ -1,3 +1,87 @@
-p {
-  font-family: Lato;
+h3 {
+  font-size: 15px;
+  line-height: 42px;
+}
+.icon {
+  border: none;
+}
+main {
+  width: 100%;
+}
+.pull-right {
+  float: right;
+}
+.page-header {
+  background: #fafafa;
+}
+.api-call {
+  margin: 0;
+}
+.api-call li {
+  display: inline;
+}
+.api-controller {
+  z-index: 999;
+
+  width: 100%;
+  border-radius: 0;
+}
+.navbar-light {
+  background: #fff !important;
+  border-bottom: 1px solid #e7e7e7;
+}
+.api-content {
+  padding-top: 20px;
+}
+.sidebar {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
 }

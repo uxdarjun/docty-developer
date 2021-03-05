@@ -1,8 +1,734 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#"
+    ><img
+      src="https://docty-dev.s3.us-east-2.amazonaws.com/avatar/1613825037956.png"
+      width="42px"
+    />Developers</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">End Points</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Environments
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Test</a>
+          <a class="dropdown-item" href="#">Live</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Get Live token</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Help</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+<nav
+  style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+  aria-label="breadcrumb"
+>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+  </ol>
+</nav>
 <div class="container-fluid">
- <div class=""></div> 
-  <mat-tab-group>
-    <mat-tab label="First"> Content asdad</mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content adad </mat-tab>
-  </mat-tab-group>
+  <div class="row ">
+    <div class="col-md-2  d-md-block bg-light sidebar">
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" #tree>
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button mat-icon-button disabled class="icon"></button>
+          <span style="color:grey;">{{node?.method}}</span>/ {{node.name}}
+        </mat-tree-node>
+        <mat-tree-node
+          *matTreeNodeDef="let node;when: hasChild"
+          matTreeNodePadding
+        >
+          <a
+            mat-icon-button
+            matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name"
+          >
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </a>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-4 api-content">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Clinic</a></li>
+              <li class="breadcrumb-item"><a href="#">My Customers</a></li>
+              <li class="breadcrumb-item active" aria-current="page">GET</li>
+            </ol>
+          </nav>
+        </div>
+        <form class="col-md-12">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">[GET]</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="https://apicotest.docty.ai/api/clinic/customer/my-customers   "
+            />
+            <div class="input-group-append">
+              <span class="input-group-text"><a href="">Copy</a></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <main role="main" class="col-md-12">
+          <h3>Authenication</h3>
+          <mat-card>
+            <table class="table text-start table-bordered">
+              <tbody>
+                <tr>
+                  <td><code>Clinic ID</code></td>
+                  <td>Required</td>
+                  <td>
+                    Enter a clinic id to get the data response
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="Add Clinic ID"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Token</code></td>
+                  <td>Required</td>
+                  <td>
+                    An authentication token required for data view
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" value="Add Value" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-primary pull-right">
+              Validate
+            </button>
+            <br clear="both" />
+          </mat-card>
+
+          <h3>Parameters</h3>
+          <mat-card>
+            <table class="table text-start table-bordered">
+              <thead>
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>Gender</code></td>
+                  <td>Optional</td>
+                  <td>
+                    You can generate the patients list by the gender using the
+                    the acceptable values as below<br />
+                    <code>Acceptable values : </code> <code>Male</code>,
+                    <code>Female</code>, <code>Other</code>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" value="Value" />
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>City Code</code></td>
+                  <td>Optional</td>
+                  <td>
+                    To get the patient list by the area you can add the multiple
+                    city code seprated by the (,) comma.
+                    <br />
+                    <code>Example</code>: <code>12541, 4541, 1245</code>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" value="Value" />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><code>Medical Records</code></td>
+                  <td>Optional</td>
+                  <td>
+                    To generate the patient list by the medical records use the
+                    below parameters
+                    <br />
+                    <code>BMI</code>:
+                    <code>UnderWeight, OverWeight, Normal</code>
+                    <br />
+                    <code>Blood Groups</code>: <code>A, A+, B etc..</code>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" value="Value" />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><code>Age</code></td>
+                  <td>Optional</td>
+                  <td>
+                    You can set the age range to generate records, you can add
+                    e.g 45-50 to get patient aged between 45 years-50years
+                    <br />
+                    <code>Pattern</code>:
+                    <code>45-50</code>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" value="Value" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-primary pull-right">
+              Get Response
+            </button>
+            <br clear="both" />
+          </mat-card>
+
+          <h3>Response Query and Data Results</h3>
+          <mat-card>
+            <mat-tab-group>
+              <mat-tab label="Query"> <pre>{{data | json}}</pre></mat-tab>
+              <mat-tab label="JSON View">
+                <div class="highlight">
+                  <textarea
+                    class="jsoneditor-text"
+                    spellcheck="false"
+                    style="border:0; height:65vh; width:100%"
+                  >
+
+                    {
+  "status": true,
+  "data": [
+    {
+      "id": 186,
+      "first_name": "Anurag",
+      "last_name": "Mishra",
+      "middle_name": "",
+      "gender": "FEMALE",
+      "dob": "1984-06-24T18:30:00.000Z",
+      "picture": "https://docty-dev.s3.us-east-2.amazonaws.com/avatar/1612979683935.png",
+      "isd_code": "91",
+      "phone_number": "9450612058",
+      "email": "anurag@yopmail.com",
+      "createdAt": "2021-02-10T12:46:44.000Z",
+      "bmi": "26.12",
+      "conditions": [
+        {
+          "id": "c_972",
+          "name": "Asthma exacerbation",
+          "extras": {
+            "hint": "You should use your antiasthmatic drugs as recommended by your doctor to do in such a situation. Please consult a GP. If your symptoms are severe, please seek urgent medical attention!",
+            "icd10_code": "J45, J45.0, J45.1, J45.8, J45.9, J46"
+          },
+          "severity": "moderate",
+          "acuteness": "acute_potentially_chronic",
+          "categories": [
+            "Pulmonology"
+          ],
+          "prevalence": "very_rare",
+          "sex_filter": "both",
+          "common_name": "Asthma exacerbation",
+          "probability": 0.8161,
+          "triage_level": "consultation_24",
+          "recommended_channel": "personal_visit"
+        }, 
+  ],
+  "pageSize": 25,
+  "total": 6252,
+  "message": null
+}
+                  </textarea>
+                </div>
+              </mat-tab>
+              <mat-tab label="Object View">
+                Object View is not available</mat-tab
+              >
+              <mat-tab label="Grid View">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Last Login</th>
+                      <th>Completed Self-declared records date</th>
+                      <th>Chronic Condition</th>
+                      <th>365 Schedules</th>
+                      <th>Triage</th>
+                      <th>No. Of Family</th>
+                      <th>Last Device</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>03/03/2021 10:55 AM</td>
+                      <td>24/02/2021</td>
+                      <td>NO</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                    <tr>
+                      <td>Sanjay</td>
+                      <td>Singh</td>
+                      <td>01/02/2020 12:22 PM</td>
+                      <td>12/11/2019</td>
+                      <td>YES</td>
+                      <td>156</td>
+                      <td>NA</td>
+                      <td>3</td>
+                      <td>Web</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-tab>
+            </mat-tab-group>
+          </mat-card>
+
+          <h3>Develoers guidelines</h3>
+          <mat-card>
+            <h5>API explained</h5>
+            <p>
+              All utility variables are added to the
+              <code>$utilities</code> variable within our
+              <code>_utilities.scss</code> stylesheet. Each group of utilities
+              looks something like this:
+            </p>
+          </mat-card>
+        </main>
+      </div>
+    </div>
+  </div>
 </div>
