@@ -5,6 +5,7 @@ import {
   MatTreeFlatDataSource,
   MatTreeFlattener
 } from "@angular/material/tree";
+import { HttpClient } from "@angular/common/http";
 
 const TREE_DATA: any[] = [
   {
@@ -50,6 +51,10 @@ interface ExampleFlatNode {
 })
 export class AppComponent {
   @ViewChild("tree") tree;
+  endPoint = "https://apicotest.docty.ai/api/clinic/customer/my-customers";
+  token: string = "89384d835fdf0bcec63cecb23917584e7038be6d";
+  params: any = {};
+  loader = false;
   private _transformer = (node: any, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -71,15 +76,28 @@ export class AppComponent {
     node => node.children
   );
   data = TREE_DATA;
+  query = {};
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.dataSource.data = TREE_DATA;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   ngAfterViewInit() {
     this.tree.treeControl.expandAll();
+  }
+  result = null;
+  evaluate() {
+    this.loader = true;
+    this.http
+      .post(this.endPoint, this.params, { headers: { auth_token: this.token } })
+      .toPromise()
+      .then(res => {
+        this.result = res;
+      })
+      .catch(e => console.log(e))
+      .finally(() => (this.loader = false));
   }
 }

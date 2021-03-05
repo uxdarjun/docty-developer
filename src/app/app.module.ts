@@ -10,6 +10,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ClipboardModule } from "@angular/cdk/clipboard";
+import { HttpClientModule } from "@angular/common/http";
+import { NgxJsonViewerModule } from "ngx-json-viewer";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -21,7 +24,10 @@ import { ClipboardModule } from "@angular/cdk/clipboard";
     MatIconModule,
     MatCardModule,
     MatSlideToggleModule,
-    ClipboardModule
+    ClipboardModule,
+    HttpClientModule,
+    NgxJsonViewerModule,
+    MatProgressSpinnerModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
