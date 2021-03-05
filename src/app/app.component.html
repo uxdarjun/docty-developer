@@ -157,7 +157,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><code>orderKey</code></td>
+										<td><code>OrderKey</code></td>
 										<td>Optional</td>
 										<td>
 											Keyword to order the object<br />
@@ -174,7 +174,7 @@
 										<td>
 											Order of order key
 											<br />
-											<code>Acceptable values</code>: <code>ASC, DESC</code>
+											<b>Acceptable values : </b> <code>ASC, DESC</code>
 										</td>
 										<td>
 											<input type="text" class="form-control" [(ngModel)]="params.order" />
@@ -185,12 +185,10 @@
 										<td><code>Page</code></td>
 										<td>Optional</td>
 										<td>
-											Page no is numariec key for pagination
+											Page number is numaric key for pagination
 											<br />
-											<code>Default 1</code>:
-											<code>Acceptable</code>
-											<br />
-											<code>Numerica value like 1,2,3.</code>
+											<b>Acceptable values : </b>
+											<code>Default 1</code>, <code>numaric value like 1,2,3.</code>
 										</td>
 										<td>
 											<input type="text" class="form-control" [(ngModel)]="params.page" />
@@ -198,13 +196,14 @@
 									</tr>
 
 									<tr>
-										<td><code>serrch</code></td>
+										<td><code>Search</code></td>
 										<td>Optional</td>
 										<td>
-											Any search keyword like first name, last name, phone no. oremail of customer
+											Any search keyword like first name, last name, phone no. or email of
+											customer
 											<br />
-											<code>Pattern</code>:
-											<code>45-50</code>
+											<b>Acceptable values : </b>
+											<code>phone number</code>, <code>Name</code>,<code>Email etc..</code>
 										</td>
 										<td>
 											<input type="text" class="form-control" [(ngModel)]="params.search" />

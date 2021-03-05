@@ -100,7 +100,7 @@ export class AppComponent {
       .then(res => {
         this.result = res;
       })
-      .catch(e => this.error = e)
+      .catch(e => (this.error = e))
       .finally(() => (this.loader = false));
   }
 }
